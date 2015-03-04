@@ -27,8 +27,11 @@ h1 {
   margin:0;
 }
 p {
-  margin-bottom:0.5em;
-  margin-top:0.3em;
+  margin-bottom:0.6em;
+  margin-top:0.6em;
+}
+.space-above {
+  margin-top:2em;
 }
 nav {
   margin:0.5em 0;
