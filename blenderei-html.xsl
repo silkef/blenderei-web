@@ -18,7 +18,7 @@
   <xsl:template match="body/section[@id]">
     <xsl:result-document href="htdocs/{@id}.html">
       <xsl:apply-templates select="/" mode="export">
-        <xsl:with-param name="section" select="." tunnel="yes"/>
+        <xsl:with-param name="section" select="." tunnel="yes" as="element(section)"/>
       </xsl:apply-templates>
     </xsl:result-document>
   </xsl:template>
@@ -56,10 +56,36 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  
-  
+    
   <xsl:template match="@src | @href" mode="export">
     <xsl:attribute name="{name()}" select="replace(., '^htdocs/', '')"/>
+  </xsl:template>
+  
+  <xsl:template match="title" mode="export">
+    <xsl:param name="section" as="element(section)?" tunnel="yes"/>
+    <xsl:variable name="heading" as="element(*)?" 
+      select="$section/*[1][matches(name(), '^h\d$')][normalize-space()]"/>
+    <xsl:choose>
+      <xsl:when test="$heading">
+        <xsl:copy>
+          <xsl:value-of select="string-join(
+                                  (
+                                    replace(
+                                      $heading, 
+                                      '[\p{Zs}\s]+', 
+                                      ' '
+                                    ),
+                                    .
+                                  ),
+                                  ' – '
+                                )"/>
+        </xsl:copy>    
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:next-match/>
+      </xsl:otherwise>
+    </xsl:choose>
+    
   </xsl:template>
   
 </xsl:stylesheet>
