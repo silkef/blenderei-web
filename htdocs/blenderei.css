@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+@font-face{
+  font-family:LeagueScript;
+  src:url('LeagueScriptNumberOne.woff');
+}
+
+body{
+  color:#FEA;
+  font-family:Calibri, "Lucida Grande", Arial, Helvetica, sans-serif;
+  overflow:hidden;
+  background-color:#202020;
+  padding:1em 2em;
+  line-height: 1.3;
+  font-size:14pt;
+}
+h1, .cursive {
+  font-family: LeagueScript, cursive;
+  text-transform:none;
+}
+.cursive {
+  font-size:92%;
+}
+
+h1 {
+  display:none;
+  margin:0;
+}
+p {
+  margin-bottom:0.5em;
+  margin-top:0.3em;
+}
+nav {
+  margin:0.5em 0;
+  color: #888;
+}
+nav > ul {
+  margin: 0;
+  padding:0;
+}
+nav li {
+  display:block;
+  font-weight:bold;
+  margin: 0;
+  padding: 0 1em 0.5em 0;
+}
+div.full p{
+  width:100%;
+}
+main{
+  position:absolute;
+  bottom:2em;
+  left:2em;
+  background-color:rgba(96, 96, 96, 0.7);
+  width:35%;
+  height:55%;
+  min-width:8em;
+  max-width:400px;
+  min-height:6em;
+  border-radius:16px;
+  padding:0.3em 1.1em 1.1em 1.1em;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+main h2 {
+  font-size: 120%;
+  font-weight: 500;
+  margin-top:0.7em;
+  margin-bottom: 0.4em;
+  text-transform:uppercase;
+}
+main h3 {
+  font-size: 115%;
+  font-weight: 500;
+  margin-top:0.6em;
+  margin-bottom: 0.3em;
+}
+
+img.bg{
+  height:116%;
+  min-width:40em;
+  position:fixed;
+  top:-40px;
+  left:0;
+  z-index:-1;
+}
+a {
+  font-weight: normal;
+  color: #888;
+  text-decoration:underline;
+  }
+nav a {
+  text-decoration:none;
+  font-weight:bold;
+}
+main a {
+  color:#FEA;
+}
+main a:hover {
+  color:#FFFAC8;
+}
+a:hover {
+  color:#AAA;
+}
+p.home {
+  position:absolute;
+  bottom:0.2em;
+  right:0.8em;
+  display:inline-block;
+}
+p.home a {
+  z-index:-1;
+  text-decoration:none;
+}
