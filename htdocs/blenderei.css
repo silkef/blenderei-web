@@ -43,8 +43,7 @@ nav > ul {
 }
 nav li {
   display:block;
-  margin: 0;
-  padding: 0 1em 0.5em 0;
+  margin: 0.2em 0;
   color:#FFFAC8;
 }
 div.full p{
@@ -140,7 +139,6 @@ p.home a {
  }
   body{
     padding:0.5em 1em;
-    line-height:1.25;
   }
   p.home a {
     z-index:2;
