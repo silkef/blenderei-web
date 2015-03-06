@@ -33,8 +33,8 @@
     <xsl:param name="section" as="element(section)?" tunnel="yes"/>
     <xsl:if test=". is $section">
       <main>
-        <xsl:apply-templates mode="#current"/>
-        <p class="home" title="Home"><a href="index.html">⌂</a></p>
+        <div><xsl:apply-templates mode="#current"/></div>
+        <p class="home" title="close box"><a href="index.html">✘</a></p>
       </main>
     </xsl:if>
   </xsl:template>
