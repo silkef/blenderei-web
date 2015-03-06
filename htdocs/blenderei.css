@@ -146,8 +146,4 @@ p.home a {
   body{
     padding:0.5em 1em;
   }
-  p.home a {
-    z-index:2;
-    font-size:150%;
-  }
 }
