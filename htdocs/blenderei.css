@@ -14,9 +14,17 @@ body{
   line-height: 1.3;
   font-size:14pt;
 }
+body.detail {
+  background-color:rgba(32,32,0,0.1);
+  color:black;
+}
+
 h1, .cursive {
   font-family: LeagueScript, cursive;
   text-transform:none;
+}
+h1 > a {
+  text-decoration:none;
 }
 .cursive {
   font-size:92%;
@@ -25,6 +33,21 @@ h1, .cursive {
 h1 {
   display:none;
   margin:0;
+}
+body.detail h1{
+  display:block;
+}
+body.detail h1 a{
+  display:inline-block;
+  padding: 0.45em 0.6em 0.3em 0.7em;
+  background-color:rgba(32,32,16,0.8);
+  color:#FEA;
+  border-radius:5px;
+}
+
+
+body.detail nav{
+  display:none;
 }
 p {
   margin-bottom:0.6em;
@@ -44,12 +67,12 @@ nav > ul {
 nav li {
   display:block;
   margin: 0.2em 0;
-  color:#FFFAC8;
+  /*color:#FFFAC8;*/
 }
 div.full p{
   width:100%;
 }
-main, section{
+main{
   position:absolute;
   bottom:2em;
   left:2em;
@@ -79,7 +102,19 @@ img.bg{
   left:0;
   z-index:-1;
 }
+body.detail img.bg {
+  opacity:0.1;
+}
 
+body.detail p.link a {
+  color:#875;
+  font-weight:bold;
+}
+
+p.link img {
+  vertical-align:top;
+  margin-left:1em;
+}
 
 main h2 {
   font-size: 120%;
@@ -122,6 +157,49 @@ p.home a {
   z-index:2;
   text-decoration:none;
   color:#ccc;
+}
+
+
+.caption {
+  display:none;
+}
+
+.lightbox figure img, img.preview {
+  max-width:6em;
+} 
+
+figure {
+  display: inline-block;
+  margin:0.5em 1em 0.5em 0;
+}
+
+#lg-gallery .caption {
+  display:block;
+}
+
+#lg-gallery figcaption{
+  color:white;
+  z-index:1;
+  position:fixed;
+  top:1em;
+  left:10%;
+  width:80%;
+  background-color: rgba(96,96,96,0.4);
+}
+
+#lg-gallery figcaption p {
+  white-space:normal;
+}
+#lg-gallery a {
+  text-decoration:none;
+}
+
+#lg-action {
+  /*top:20px;*/
+}
+
+#lg-slider .lg-slide img {
+  /*max-height:80%;*/
 }
 
 @media screen and (orientation:portrait) {
