@@ -164,6 +164,9 @@ p.home a {
 .caption {
   display:none;
 }
+figure.hidden {
+  display:none;
+}
 
 .lightbox figure img, img.preview {
   max-width:6em;

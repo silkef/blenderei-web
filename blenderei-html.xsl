@@ -225,23 +225,59 @@
         <xsl:next-match/>
       </xsl:otherwise>
     </xsl:choose>
-    
   </xsl:template>
-  
+
+  <xsl:template match="div[html:contains-token(@class, 'lightbox')]" mode="export">
+    <xsl:next-match>
+      <xsl:with-param name="preview-image" as="element(img)" tunnel="yes"
+        select="(figure[html:contains-token(@class, 'featured')], figure[1])[1]//img"/>
+      <xsl:with-param name="rendered" as="element(figure)*" tunnel="yes"
+        select="figure[1]"/>
+    </xsl:next-match>
+  </xsl:template>
+
   <xsl:template match="div[html:contains-token(@class, 'lightbox')]/figure" mode="export">
+    <xsl:param name="rendered" as="element(figure)*" tunnel="yes"/>
+    <xsl:variable name="class" as="xs:string" 
+      select="string-join((@class, 'hidden'[every $r in $rendered satisfies not($r is current())]), ' ')"/>
     <xsl:copy>
       <xsl:apply-templates select="@*" mode="#current"/>
+      <xsl:if test="$class">
+        <xsl:attribute name="class" select="$class"/>
+      </xsl:if>
       <xsl:attribute name="data-src">
         <xsl:apply-templates select="(.//img)[1]/@src" mode="#current"/>
       </xsl:attribute>
       <xsl:attribute name="data-sub-html" select="'.caption'"/>
-      <xsl:apply-templates mode="#current"/>
+      <xsl:attribute name="title" select="normalize-space(figcaption)"/>
+      <xsl:apply-templates mode="#current">
+        <xsl:with-param name="pos" as="xs:integer" select="html:index-of(../figure, .)" tunnel="yes"/>
+      </xsl:apply-templates>
     </xsl:copy>
   </xsl:template>
 
   <xsl:template match="div[html:contains-token(@class, 'lightbox')]/figure//img" mode="export">
+    <xsl:param name="pos" as="xs:integer" tunnel="yes"/>
+    <xsl:param name="preview-image" as="element(img)" tunnel="yes"/>
+    <xsl:message select="'IIIIIIIIIIIIIIIIIIIIIIII ', $pos, ' ', @src, ' ', $preview-image/@src"></xsl:message>
+    <xsl:choose>
+      <xsl:when test="$pos = 1">
+        <xsl:for-each select="$preview-image">
+          <xsl:call-template name="img"/>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="img"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  
+  <xsl:template name="img">
     <a href="#">
-      <xsl:next-match/>
+      <xsl:copy>
+        <xsl:apply-templates select="@*" mode="#current"/>
+        <xsl:attribute name="alt" select="normalize-space(ancestor::figure/figcaption)"/>
+      </xsl:copy>
     </a>
   </xsl:template>
 
@@ -264,6 +300,12 @@
     <xsl:param name="tokens" as="xs:string?"/>
     <xsl:param name="token" as="xs:string?"/>
     <xsl:sequence select="tokenize($tokens, '\s+') = $token"/>
+  </xsl:function>
+  
+  <xsl:function name="html:index-of" as="xs:integer*">
+    <xsl:param name="nodes" as="node()*"/>
+    <xsl:param name="node" as="node()"/>
+    <xsl:sequence select="index-of(for $n in $nodes return generate-id($n), generate-id($node))"/>
   </xsl:function>
   
 </xsl:stylesheet>
