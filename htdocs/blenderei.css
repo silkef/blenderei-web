@@ -220,6 +220,12 @@ figure {
 #lg-gallery figcaption p {
   white-space:normal;
 }
+#lg-gallery figcaption small {
+  display:block;
+  font-size:small;
+  text-align:right;
+  font-style:italic;
+}
 #lg-gallery a {
   text-decoration:none;
 }

@@ -278,6 +278,8 @@
       </xsl:apply-templates>
     </xsl:copy>
   </xsl:template>
+  
+  <xsl:template match="figure/footer" mode="export"/>
 
   <xsl:template match="div[html:contains-token(@class, 'lightbox')]/figure//img" mode="export">
     <xsl:param name="pos" as="xs:integer" tunnel="yes"/>
@@ -308,6 +310,7 @@
       <xsl:apply-templates select="@*" mode="#current"/>
       <xsl:attribute name="class" select="string-join((@class, 'caption'), ' ')"/>
       <xsl:apply-templates mode="#current"/>
+      <xsl:apply-templates select="../footer/small" mode="#current"/>
     </xsl:copy>
   </xsl:template>
 
