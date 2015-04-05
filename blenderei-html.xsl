@@ -71,8 +71,26 @@
         <!-- below first level -->
         <xsl:comment>orig C</xsl:comment>
         <xsl:copy>
-          <xsl:apply-templates select="@*, node()" mode="export"/>
+          <xsl:apply-templates select="@*" mode="export"/>
+          <xsl:for-each-group select="*" group-adjacent="exists(self::section[not(@id)])">
+            <xsl:choose>
+              <xsl:when test="current-grouping-key()">
+                <div class="cols">
+                  <xsl:apply-templates select="current-group()" mode="#current"/>
+                </div>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:apply-templates select="current-group()" mode="#current"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:for-each-group>
         </xsl:copy>
+      </xsl:when>
+      <xsl:when test="some $s in descendant::section satisfies ($s is $section)
+                      and count(ancestor::section) = 0">
+        <!-- Suppress "Referenzen" -->
+        <xsl:comment>orig D.2 not rendered: <xsl:value-of select="*[1]"/></xsl:comment>
+        <xsl:apply-templates select="section[exists(. intersect $section/ancestor-or-self::section)]" mode="#current"/>
       </xsl:when>
       <xsl:when test="some $s in descendant::section satisfies ($s is $section)">
         <!-- This result page’s $section comes below the currently transformed section.
@@ -148,9 +166,14 @@
     <xsl:param name="section" as="element(section)?" tunnel="yes"/>
     <xsl:copy>
       <xsl:apply-templates select="@*" mode="#current"/>
-      <xsl:if test="exists($section/ancestor::section)">
-        <xsl:attribute name="class" select="string-join((@class, 'detail'), ' ')"/>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="exists($section/ancestor::section)">
+          <xsl:attribute name="class" select="string-join((@class, 'detail'), ' ')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:attribute name="class" select="string-join((@class, 'general'), ' ')"/>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates mode="#current"/>
       <script type="text/javascript">
       $(document).ready(function() {

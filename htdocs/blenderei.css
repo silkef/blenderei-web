@@ -20,6 +20,10 @@ body.detail {
   overflow:scroll;
 }
 
+body.detail > section {
+  max-width: 40em;
+}
+
 h1, .cursive {
   font-family: LeagueScript, cursive;
   text-transform:none;
@@ -37,6 +41,8 @@ h1 {
 }
 body.detail h1{
   display:block;
+  position:absolute;
+  right:1em;
 }
 body.detail h1 a{
   display:inline-block;
@@ -44,6 +50,15 @@ body.detail h1 a{
   background-color:rgba(32,32,16,0.8);
   color:#FEA;
   border-radius:5px;
+}
+
+h6 {
+  margin-bottom:0.5em;
+}
+div.cols_DISABLED {
+  columns: 2;
+  -moz-columns:2;
+  -webkit-columns:2;
 }
 
 
@@ -55,7 +70,13 @@ p {
   margin-top:0.6em;
 }
 .space-above {
-  margin-top:2em;
+  margin-top:1em;
+}
+.smaller {
+  font-size:smaller;
+  line-height:1.2;
+  margin-bottom:0.2em;
+  margin-top:0.2em;
 }
 nav {
   margin:0.5em 0;
@@ -167,6 +188,11 @@ p.home a {
 figure.hidden {
   display:none;
 }
+div.cols > section {
+  display:inline-block;
+  width:45%;
+  vertical-align:text-top;
+}
 
 .lightbox figure img, img.preview {
   max-width:6em;
@@ -215,7 +241,7 @@ figure {
     top:0;
     position:absolute;
   }
-  main, section{
+  body.general > main, body.general > section{
     bottom:1em;
     left:1em;
     width:auto;
@@ -228,4 +254,14 @@ figure {
   body{
     padding:0.5em 1em;
   }
+  div.cols_DISABLED {
+    columns: 0;
+    -moz-columns:0;
+    -webkit-columns:0;
+  }
+  div.cols > section {
+    display:block;
+    width:90%;
+  }
+
 }
