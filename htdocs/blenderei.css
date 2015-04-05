@@ -17,6 +17,7 @@ body{
 body.detail {
   background-color:rgba(32,32,0,0.1);
   color:black;
+  overflow:scroll;
 }
 
 h1, .cursive {
