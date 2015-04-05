@@ -259,7 +259,6 @@
   <xsl:template match="div[html:contains-token(@class, 'lightbox')]/figure//img" mode="export">
     <xsl:param name="pos" as="xs:integer" tunnel="yes"/>
     <xsl:param name="preview-image" as="element(img)" tunnel="yes"/>
-    <xsl:message select="'IIIIIIIIIIIIIIIIIIIIIIII ', $pos, ' ', @src, ' ', $preview-image/@src"></xsl:message>
     <xsl:choose>
       <xsl:when test="$pos = 1">
         <xsl:for-each select="$preview-image">
