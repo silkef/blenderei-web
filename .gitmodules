@@ -1,3 +1,4 @@
 [submodule "lightGallery"]
 	path = lightGallery
 	url = git@github.com:gimsieke/lightGallery.git
+	branch = master

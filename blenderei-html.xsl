@@ -29,7 +29,7 @@
     </xsl:result-document>
   </xsl:template>
   
-  <xsl:template match="* | @*" mode="export replicate">
+  <xsl:template match="* | @*" mode="export replicate nav-headings">
     <xsl:copy>
       <xsl:apply-templates select="@*, node()" mode="#current"/>
     </xsl:copy>
@@ -71,7 +71,7 @@
         <!-- below first level -->
         <xsl:comment>orig C</xsl:comment>
         <xsl:copy>
-          <xsl:apply-templates select="@*" mode="export"/>
+          <xsl:apply-templates select="@* except @id" mode="export"/>
           <xsl:for-each-group select="*" group-adjacent="exists(self::section[not(@id)])">
             <xsl:choose>
               <xsl:when test="current-grouping-key()">
@@ -141,11 +141,13 @@
     </li>
   </xsl:template>
   
+  <xsl:template match="span[html:contains-token(@class, 'subtitle')]" mode="nav-headings"/>
+  
   <xsl:template match="*" mode="nav"><!-- Supposed to match headings only -->
     <xsl:param name="section" as="element(section)?" tunnel="yes"/>
     <xsl:choose>
       <xsl:when test=".. is $section">
-        <xsl:apply-templates/>
+        <xsl:apply-templates mode="nav-headings"/>
       </xsl:when>
       <xsl:when test="..[section[count(ancestor::section) &lt;= $navdepth]]
                       and (every $item in (../* except current()) satisfies ($item/self::section))">
@@ -154,7 +156,7 @@
       </xsl:when>
       <xsl:otherwise>
         <a href="{../@id}.html">
-          <xsl:apply-templates/>
+          <xsl:apply-templates mode="nav-headings"/>
         </a>
       </xsl:otherwise>
     </xsl:choose>
@@ -165,13 +167,13 @@
   <xsl:template match="body" mode="export">
     <xsl:param name="section" as="element(section)?" tunnel="yes"/>
     <xsl:copy>
-      <xsl:apply-templates select="@*" mode="#current"/>
+      <xsl:apply-templates select="@*, $section/@id" mode="#current"/>
       <xsl:choose>
         <xsl:when test="exists($section/ancestor::section)">
-          <xsl:attribute name="class" select="string-join((@class, 'detail'), ' ')"/>
+          <xsl:attribute name="class" select="'detail'"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:attribute name="class" select="string-join((@class, 'general'), ' ')"/>
+          <xsl:attribute name="class" select="'general'"/>
         </xsl:otherwise>
       </xsl:choose>
       <xsl:apply-templates mode="#current"/>
@@ -186,6 +188,13 @@
       });
     </script>
     </xsl:copy>
+  </xsl:template>
+  
+  <xsl:template match="img[html:contains-token(@class, 'bg')]" mode="export">
+    <xsl:param name="section" as="element(section)?" tunnel="yes"/>
+    <xsl:if test="not($section/@id = 'ellikurush')">
+      <xsl:next-match/>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="h1" mode="export">
