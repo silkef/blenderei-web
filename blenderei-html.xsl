@@ -63,7 +63,7 @@
         <p class="link">
           <a href="{@id}.html">
             <xsl:apply-templates select="*[1]/node()" mode="#current"/>
-            <xsl:apply-templates select="(.//figure//img)[1]" mode="replicate"/>
+            <xsl:apply-templates select="(.//img)[1]" mode="replicate"/>
           </a>
         </p>
       </xsl:when>
@@ -253,8 +253,8 @@
   <xsl:template match="div[html:contains-token(@class, 'lightbox')]" mode="export">
     <xsl:next-match>
       <xsl:with-param name="preview-image" as="element(img)" tunnel="yes"
-        select="(figure[html:contains-token(@class, 'featured')], figure[1])[1]//img"/>
-      <xsl:with-param name="rendered" as="element(figure)*" tunnel="yes"
+        select="(*[html:contains-token(@class, 'featured')], figure[1])[1]//img"/>
+      <xsl:with-param name="rendered" as="element(*)*" tunnel="yes"
         select="figure[1]"/>
     </xsl:next-match>
   </xsl:template>
@@ -269,7 +269,7 @@
         <xsl:attribute name="class" select="$class"/>
       </xsl:if>
       <xsl:attribute name="data-src">
-        <xsl:apply-templates select="(.//img)[1]/@src" mode="#current"/>
+        <xsl:apply-templates select="(.//img | .//video)[1]/@src" mode="#current"/>
       </xsl:attribute>
       <xsl:attribute name="data-sub-html" select="'.caption'"/>
       <xsl:attribute name="title" select="normalize-space(figcaption)"/>
@@ -280,6 +280,8 @@
   </xsl:template>
   
   <xsl:template match="figure/footer" mode="export"/>
+
+  <xsl:template match="div[html:contains-token(@class, 'lightbox')]/figure//video" mode="export"/>
 
   <xsl:template match="div[html:contains-token(@class, 'lightbox')]/figure//img" mode="export">
     <xsl:param name="pos" as="xs:integer" tunnel="yes"/>
