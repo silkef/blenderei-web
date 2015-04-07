@@ -310,7 +310,7 @@
   <xsl:template name="img">
     <a href="#">
       <xsl:copy>
-        <xsl:apply-templates select="@*" mode="#current"/>
+        <xsl:apply-templates select="@* except @style" mode="#current"/>
         <xsl:attribute name="alt" select="normalize-space(ancestor::figure/figcaption)"/>
       </xsl:copy>
     </a>
@@ -327,7 +327,7 @@
 
   <xsl:template match="img" mode="replicate">
     <xsl:copy>
-      <xsl:apply-templates select="@*" mode="#current"/>
+      <xsl:apply-templates select="@* except @style" mode="#current"/>
       <xsl:attribute name="class" select="string-join((@class, 'preview'), ' ')"/>  
     </xsl:copy>
   </xsl:template>
