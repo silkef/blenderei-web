@@ -230,6 +230,11 @@ div.cols > section {
   margin-bottom:0.7em;
 } 
 
+div.lightbox > figure > a {
+  text-decoration:none;
+  font-size:small;
+}
+
 figure {
   display: inline-block;
   margin:0.5em 1em 0.5em 0;

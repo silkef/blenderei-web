@@ -4,7 +4,7 @@
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
             <serialized version="16.1" xml:space="preserve">
-                <map>
+                <serializableOrderedMap>
                     <entry>
                         <String>editor.detect.indent.on.open</String>
                         <Boolean>false</Boolean>
@@ -144,7 +144,11 @@
                             </scenario>
                         </scenario-array>
                     </entry>
-                </map>
+                    <entry>
+                        <String>validation.scenarios</String>
+                        <validationScenario-array/>
+                    </entry>
+                </serializableOrderedMap>
             </serialized>
         </options>
     </meta>

@@ -17,6 +17,9 @@
     <xsl:result-document href="htdocs/index.html">
       <xsl:apply-templates select="/" mode="export"/>
     </xsl:result-document>
+    <xsl:result-document href="images.txt" method="text">
+      <xsl:sequence select="string-join(//img/@src[not(matches(., 'https?:'))], '&#xa;')"/>
+    </xsl:result-document>
     <xsl:apply-templates select="html/body//section[@id]"/>    
   </xsl:template>
   
@@ -319,6 +322,7 @@
   <xsl:template match="div[html:contains-token(@class, 'lightbox')]/figure/figcaption" mode="export">
     <xsl:copy>
       <xsl:apply-templates select="@*" mode="#current"/>
+      <xsl:attribute name="onclick" select="'this.style.display=''none'''"></xsl:attribute>
       <xsl:attribute name="class" select="string-join((@class, 'caption'), ' ')"/>
       <xsl:apply-templates mode="#current"/>
       <xsl:apply-templates select="../footer/small" mode="#current"/>
