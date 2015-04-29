@@ -60,17 +60,23 @@
           </ul>
         </nav>
       </xsl:when>
-      <xsl:when test="not(. is $section) and count(ancestor::section) &gt;= $navdepth">
+      <xsl:when test="not(. is $section) and count(ancestor::section) &gt;= 1">
         <!-- in the reference subcategory pages, creating links to the subsections -->
         <xsl:comment>orig B</xsl:comment>
         <p class="link">
           <a href="{@id}.html">
             <xsl:apply-templates select="*[1]/node()" mode="#current"/>
-            <xsl:apply-templates select="(.//img)[1]" mode="replicate"/>
+            <!--<xsl:apply-templates select="(.//img)[1]" mode="replicate"/>-->
           </a>
         </p>
       </xsl:when>
-      <xsl:when test=". is $section and count(ancestor::section) &gt;= $navdepth - 1">
+      <xsl:when test=". is $section 
+                      and 
+                      (
+                        count(ancestor::section) &gt;= $navdepth - 1
+                        or
+                        $section/../@id = 'exhibitions'
+                      )">
         <!-- below first level -->
         <xsl:comment>orig C</xsl:comment>
         <xsl:copy>
@@ -89,12 +95,12 @@
           </xsl:for-each-group>
         </xsl:copy>
       </xsl:when>
-      <xsl:when test="some $s in descendant::section satisfies ($s is $section)
+      <!--<xsl:when test="some $s in descendant::section satisfies ($s is $section)
                       and count(ancestor::section) = 0">
-        <!-- Suppress "Referenzen" -->
+        <!-\- Suppress "Referenzen" -\->
         <xsl:comment>orig D.2 not rendered: <xsl:value-of select="*[1]"/></xsl:comment>
         <xsl:apply-templates select="section[exists(. intersect $section/ancestor-or-self::section)]" mode="#current"/>
-      </xsl:when>
+      </xsl:when>-->
       <xsl:when test="some $s in descendant::section satisfies ($s is $section)">
         <!-- This result page’s $section comes below the currently transformed section.
         Only render the heading and process the sections that are between the current and
@@ -136,11 +142,11 @@
   <xsl:template match="section" mode="nav">
     <li>
       <xsl:apply-templates select="*[1]" mode="#current"/>
-      <ul>
-        <xsl:if test="section and count(ancestor::section) &lt; $navdepth - 1">
-          <xsl:apply-templates select="section" mode="#current"/>
-        </xsl:if>
-      </ul>
+        <!--<xsl:if test="section and count(ancestor::section) &lt; $navdepth - 1">
+          <ul>
+            <xsl:apply-templates select="section" mode="#current"/>
+          </ul>
+        </xsl:if>-->
     </li>
   </xsl:template>
   
