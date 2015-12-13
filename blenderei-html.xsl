@@ -185,7 +185,9 @@
           <xsl:attribute name="class" select="'general'"/>
         </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates mode="#current"/>
+      <div class="bg">
+        <xsl:apply-templates mode="#current"/>  
+      </div>
       <script type="text/javascript">
       $(document).ready(function() {
         $(".lightbox").lightGallery({
