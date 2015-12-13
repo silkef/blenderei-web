@@ -158,11 +158,11 @@
       <xsl:when test=".. is $section">
         <xsl:apply-templates mode="nav-headings"/>
       </xsl:when>
-      <xsl:when test="..[section[count(ancestor::section) &lt;= $navdepth]]
+      <!--<xsl:when test="..[section[count(ancestor::section) &lt;= $navdepth]]
                       and (every $item in (../* except current()) satisfies ($item/self::section))">
-        <!-- There are subsections with their own nav links; no other content to display -->
+        <!-\- There are subsections with their own nav links; no other content to display -\->
         <xsl:apply-templates/>
-      </xsl:when>
+      </xsl:when>-->
       <xsl:otherwise>
         <a href="{../@id}.html">
           <xsl:apply-templates mode="nav-headings"/>

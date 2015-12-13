@@ -26,6 +26,11 @@ body.detail h3 {
   margin-top:0;
 }
 
+body.detail h4 {
+  margin-top:2em;
+  margin-bottom:1em;
+}
+
 body.detail > section, body.detail h3 {
   max-width: 700px;
 }
@@ -172,6 +177,12 @@ main div {
 img {
   border:none;
 }
+img.normal {
+  max-width:45%;
+  margin-right:2em;
+  margin-bottom:2em;
+}
+
 body.detail img.bg, body.detail div.bg:after {
   opacity:0.2;
 }
@@ -316,6 +327,9 @@ figure {
     right:auto;
     bottom:auto;
     top:auto;
+  }
+  img.normal {
+    max-width:90%;
   }
 }
 
