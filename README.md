@@ -1,6 +1,6 @@
 # blenderei-web
 
-Sources of my wife’s site [blenderei.de](http://www.blenderei.de). 
+Sources of my site [blenderei.de](http://www.blenderei.de). 
 
 [index.html](index.html) is just a master file. The pages will be
 generated from it by the following command:
