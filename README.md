@@ -1,8 +1,5 @@
 # blenderei-web
 
-This is outdated. Please see the fork https://github.com/silkef/blenderei-web that is actively maintained.
-
-
 Sources of my wife’s site [blenderei.de](http://www.blenderei.de). 
 
 [index.html](index.html) is just a master file. The pages will be
