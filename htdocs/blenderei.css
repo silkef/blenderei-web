@@ -265,7 +265,7 @@ div.cols > section {
 }
 
 .lightbox figure img, img.preview {
-  max-width:15em;
+  max-width:35em;
   margin-bottom:0.7em;
 } 
 
