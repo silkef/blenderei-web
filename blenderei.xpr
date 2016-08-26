@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="16.1">
+<project version="18.0">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="16.1" xml:space="preserve">
+            <serialized version="18.0" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
                         <String>editor.detect.indent.on.open</String>
@@ -38,11 +38,11 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../../IfZS/BLANK_SPACE_Theorie/ausgepackt/content.xml</String>
+                                    <String>index.html</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>content</String>
+                                        <String>index</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -53,11 +53,11 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>index.html</String>
+                                    <String>../../IfZS/BLANK_SPACE_Theorie/ausgepackt/content.xml</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>index</String>
+                                        <String>content</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
