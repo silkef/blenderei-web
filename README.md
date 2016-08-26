@@ -12,7 +12,7 @@ processor. The generated pages will be written to the ```htdocs```
 folder. If you open blenderei.xpr in oXygen, you can also use the
 transformation scenario called `index` on index.html.
 
-There may be some confusion since after there will be two files
+There may be some confusion since there will be two files
 called index.html after the transformation has run. Remember that
 the master file is in this directory while the generated file is
 in htdocs. Don’t edit the generated HTML files in the htdocs
