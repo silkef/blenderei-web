@@ -13,19 +13,32 @@
 
   <xsl:variable name="root" select="/" as="document-node(element(html))"/>
 
+  <xsl:variable name="lang" as="xs:string" select="replace(base-uri(), '^.+\.(\p{Ll}{2})\.html$', '$1')"/>
+
+  <xsl:variable name="supported-langs" as="xs:string+" select="('de', 'en')"/>
+
   <xsl:template match="/">
-    <xsl:result-document href="htdocs/index.html">
-      <xsl:apply-templates select="/" mode="export"/>
+    <xsl:variable name="other-lang-docs" as="document-node(element(html:html))*" 
+      select="for $other-lang in $supported-langs[not(. = $lang)]
+              return if (doc-available(resolve-uri(concat('index.', $other-lang, '.html'), base-uri())))
+                      then doc(resolve-uri(concat('index.', $other-lang, '.html'), base-uri()))
+                      else ()"/>
+    <xsl:result-document href="htdocs/{$lang}/index.html">
+      <xsl:apply-templates select="/" mode="export">
+        <xsl:with-param name="other-lang-docs" select="$other-lang-docs" tunnel="yes"/>
+      </xsl:apply-templates>
     </xsl:result-document>
     <xsl:result-document href="images.txt" method="text">
       <xsl:sequence select="string-join(//img/@src[not(matches(., 'https?:'))], '&#xa;')"/>
     </xsl:result-document>
-    <xsl:apply-templates select="html/body//section[@id]"/>    
+    <xsl:apply-templates select="html/body//section[@id]">
+      <xsl:with-param name="other-lang-docs" select="$other-lang-docs" tunnel="yes"/>
+    </xsl:apply-templates>    
   </xsl:template>
   
   <xsl:template match="section[@id]">
     <xsl:param name="section" as="element(section)?" tunnel="yes"/>
-    <xsl:result-document href="htdocs/{@id}.html">
+    <xsl:result-document href="htdocs/{$lang}/{@id}.html">
       <xsl:apply-templates select="/" mode="export">
         <xsl:with-param name="section" select="." tunnel="yes" as="element(section)"/>
       </xsl:apply-templates>
@@ -175,6 +188,7 @@
   
   <xsl:template match="body" mode="export">
     <xsl:param name="section" as="element(section)?" tunnel="yes"/>
+    <xsl:param name="other-lang-docs" as="document-node(element(html:html))*" tunnel="yes"/>
     <xsl:copy>
       <xsl:apply-templates select="@*, $section/@id" mode="#current"/>
       <xsl:choose>
@@ -186,6 +200,18 @@
         </xsl:otherwise>
       </xsl:choose>
       <div class="bg">
+        <div class="langselect">
+          <p>
+            <xsl:value-of select="$lang"/>
+            <xsl:for-each select="if ($section) then $other-lang-docs//@id[. = $section/@id] else $other-lang-docs/html:html/@lang">
+              <xsl:variable name="other-lang" as="xs:string" select="root(.)/html:html/@lang"/>
+              <xsl:text>&#x2003;</xsl:text>
+              <a href="../{$other-lang}/{if ($section) then string(.) else 'index'}.html">
+                <xsl:value-of select="$other-lang"/>
+              </a>
+            </xsl:for-each>
+          </p>
+        </div>
         <xsl:apply-templates mode="#current"/>  
       </div>
       <script type="text/javascript">
@@ -241,7 +267,7 @@
   </xsl:template>
     
   <xsl:template match="@src | @href | @data-src" mode="export replicate">
-    <xsl:attribute name="{name()}" select="replace(., '^htdocs/', '')"/>
+    <xsl:attribute name="{name()}" select="replace(., '^htdocs/', '../')"/>
   </xsl:template>
   
   <xsl:template match="title" mode="export">

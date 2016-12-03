@@ -153,6 +153,11 @@ nav li {
 div.full p{
   width:100%;
 }
+div.langselect {
+  position: fixed;
+  top: 1em;
+  right: 1em;
+}
 main{
   position:absolute;
   bottom:2em;
