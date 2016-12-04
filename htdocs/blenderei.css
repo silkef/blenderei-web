@@ -190,6 +190,9 @@ img.normal {
   margin-right:2em;
   margin-bottom:2em;
 }
+img.portrait {
+  max-width:28%;
+}
 img.wide {
   max-width:93%;
 }
@@ -264,6 +267,21 @@ p.home a {
 }
 figure.hidden {
   display:none;
+}
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 80px solid gray;
+  position:relative;
+  top: -50%;
+  left: 45%;
+  opacity:0.9;
+  z-index:4;
+}
+.testi {
+  height:100%;
 }
 div.cols > section {
   display:inline-block;
