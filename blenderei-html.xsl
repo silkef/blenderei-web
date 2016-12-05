@@ -259,7 +259,7 @@
     <xsl:choose>
       <xsl:when test="$section">
         <h1>
-          <a href="index.html">
+          <a href="{($section/ancestor::section[last()]/@id, 'index')[1]}.html">
             <xsl:attribute name="title">
               <xsl:choose>
                 <xsl:when test="$lang = 'de'">
