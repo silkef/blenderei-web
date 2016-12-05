@@ -202,11 +202,31 @@
       <div class="bg">
         <div class="langselect">
           <p>
+            <xsl:attribute name="title">
+              <xsl:choose>
+                <xsl:when test="$lang = 'de'">
+                  <xsl:sequence select="'aktuelle Sprache'"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:sequence select="'current language'"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:attribute>
             <xsl:value-of select="$lang"/>
             <xsl:for-each select="if ($section) then $other-lang-docs//@id[. = $section/@id] else $other-lang-docs/html:html/@lang">
               <xsl:variable name="other-lang" as="xs:string" select="root(.)/html:html/@lang"/>
               <xsl:text>&#x2003;</xsl:text>
               <a href="../{$other-lang}/{if ($section) then string(.) else 'index'}.html">
+                <xsl:attribute name="title">
+                  <xsl:choose>
+                    <xsl:when test="$lang = 'de'">
+                      <xsl:sequence select="'Sprache umschalten'"></xsl:sequence>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:sequence select="'switch language'"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:attribute>
                 <xsl:value-of select="$other-lang"/>
               </a>
             </xsl:for-each>
@@ -240,6 +260,16 @@
       <xsl:when test="$section">
         <h1>
           <a href="index.html">
+            <xsl:attribute name="title">
+              <xsl:choose>
+                <xsl:when test="$lang = 'de'">
+                  <xsl:sequence select="'zur Startseite gehen'"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:sequence select="'go to home page'"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:attribute>
             <xsl:apply-templates/>
           </a>
         </h1>        

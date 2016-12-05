@@ -20,3 +20,7 @@ We’ll probably add some JS to make an additional single-page app from
 index.html because on some devices, there is some flickering when
 jumping between static pages. The statically generated pages will
 remain there as a fallback and for indexing.
+
+Before rsyncing the htdocs directory, make sure that you copy
+lightGallery/light-gallery/ to htdocs.
+
