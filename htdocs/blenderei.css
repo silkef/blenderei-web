@@ -35,6 +35,10 @@ body.detail > section, body.detail h3 {
   max-width: 700px;
 }
 
+h6 {
+  font-size: 12pt;
+}
+
 div.bg {
   margin:0;
   padding:3em;
@@ -233,18 +237,21 @@ main h3 {
 
 a {
   font-weight: normal;
-  color: #888;
+  color: #666;
   text-decoration:underline;
   }
+.general a, #ellikurush a {
+  color: #aaa;
+}
 nav a {
   text-decoration:none;
 }
 main a {
-  color:#FEA;
+  color:#FEA !important;
   text-decoration:none;
 }
 main a:hover {
-  color:#FFFAC8;
+  color:#FFFAC8 !important;
 }
 a:hover {
   color:#AAA;
