@@ -35,6 +35,10 @@ body.detail > section, body.detail h3 {
   max-width: 700px;
 }
 
+#hours {
+  font-weight: bold;
+}
+
 h6 {
   font-size: 12pt;
 }
