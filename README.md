@@ -2,8 +2,8 @@
 
 Sources of my site [blenderei.de](http://www.blenderei.de). 
 
-[index.html](index.html) is just a master file. The pages will be
-generated from it by the following command:
+[index.de.html](index.de.html) and [index.en.html](index.en.html) are just master files. The pages will be
+generated from them by the following command:
 
     saxon -xsl:blenderei-html.xsl -s:index.[lang].html
     

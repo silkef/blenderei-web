@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="18.1">
+<project version="18.0">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="18.1" xml:space="preserve">
+            <serialized version="18.0" xml:space="preserve">
                 <serializableOrderedMap>
                     <entry>
                         <String>editor.detect.indent.on.open</String>
@@ -38,7 +38,7 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>index.de.html</String>
+                                    <String>index.en.html</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -53,7 +53,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>index.en.html</String>
+                                    <String>index.de.html</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
