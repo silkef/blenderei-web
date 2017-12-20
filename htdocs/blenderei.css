@@ -306,6 +306,12 @@ div.cols > section {
   margin-bottom:0.7em;
 } 
 
+#modeling .lightbox figure img {
+  max-width:40em
+}
+  
+
+
 div.lightbox > figure > a {
   text-decoration:none;
   font-size:small;
