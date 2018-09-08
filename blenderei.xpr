@@ -38,7 +38,24 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>index.en.html</String>
+                                    <String>htdocs/de/unionsverlag.html</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>content</String>
+                                        <String>index</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>index.de.html</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -53,7 +70,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>index.de.html</String>
+                                    <String>index.en.html</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
